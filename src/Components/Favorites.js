@@ -6,11 +6,15 @@ export default class Favorites extends Component {
 
 
   render() {
-    let beyArr = this.props.beyArr.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} />);
-    // this.props.beyArr.sort(function(this.props.beyArr[0].num_of_clicks, this.props.beyArr[1].num_of_clicks) {
-    //   return this.props.beyArr.num_of_clicks - this.props.beyArr[1].num_of_clicks;
+    let bey = this.props.beyArr
+    let beyArr = bey.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} />);
+    
+
+    // bey.sort((bey[0].num_of_clicks, bey[1].num_of_clicks) => {
+    //   return Arr[0].num_of_clicks - sortedArr[1].num_of_clicks;
     // })
-    console.log(this.props.beyArr)
+
+    console.log(beyArr[0])
 
     return (
       <div className="favorites">

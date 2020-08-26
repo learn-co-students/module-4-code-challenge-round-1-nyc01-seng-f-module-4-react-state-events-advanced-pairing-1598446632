@@ -12,18 +12,22 @@ class App extends React.Component {
     num_of_clicks: 0   
   }
 
-  favClickHandler=(beyObj)=>{
+  favClickHandler=(beyObjId)=>{
 
-    let result = this.state.data.filter(foundResult => foundResult.id === beyObj);
-    result[0].favorite = !result[0].favorite
-    let newCount = result[0].num_of_clicks = result[0].num_of_clicks +1
-    this.setState({num_of_clicks: newCount}, console.log(result[0]))
+    let result = this.state.data.find(foundResult => foundResult.id === beyObjId);
+    // console.log(result);
+    result.favorite = !result.favorite
+    let newCount = result.num_of_clicks += 1
+    // return newCount
+    // this.setState({data: newCount},)
+    console.log(newCount)
 
   }
 
 
   render() {
     let favArr = this.state.data.filter(blah => blah.favorite === true )
+    
   return (
     <div className="container">
       <BeyContainer favClickHandler={this.favClickHandler} beyArr={this.state.data} />
