@@ -8,6 +8,7 @@ class BeyContainer extends React.Component {
         return(<BeyCard key={bey.id} appClickHandler={this.props.appClickHandler} bey={bey}/>)
       } 
     ))
+
   }
 
   render() {

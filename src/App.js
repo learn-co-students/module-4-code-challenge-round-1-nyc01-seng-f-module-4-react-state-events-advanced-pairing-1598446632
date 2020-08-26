@@ -9,11 +9,20 @@ class App extends React.Component {
   appClickHandler1 = (bey) => {
     this.state.beys.find(beyObj=> beyObj.id===bey.bey.id).favorite = true
     this.state.beys.find(beyObj=> beyObj.id===bey.bey.id).num_of_clicks += 1
+    this.state.beys.sort((beyA,beyB) => {
+      return(beyB.num_of_clicks - beyA.num_of_clicks) 
+      }
+    )
+
     this.setState({beys: this.state.beys})
   }
 
   appClickHandler2 = (bey) => {
     this.state.beys.find(beyObj=> beyObj.id===bey.bey.id).favorite = false
+    this.state.beys.sort((beyA,beyB) => {
+      return(beyB.num_of_clicks - beyA.num_of_clicks) 
+      }
+    )
     this.setState({beys: this.state.beys})
   }
 
