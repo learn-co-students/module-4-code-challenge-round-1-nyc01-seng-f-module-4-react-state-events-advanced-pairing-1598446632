@@ -5,7 +5,7 @@ import Favorites from './Favorites.js'
 
 class App extends React.Component {
 
-  state = {bey: {} }
+  state = {bey: [] }
 
   appClickHandler = (bacon) => {
     bacon.favorite = true
