@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Favorites extends Component {
+export default class FavoritesContainer extends Component {
   render() {
     return (
       <div className="favorites">
