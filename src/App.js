@@ -8,22 +8,23 @@ class App extends React.Component {
   state = {bey: [] }
 
   appClickHandler = (bacon) => {
-    bacon.favorite = true
-    //this.setState({bey: bacon})
-
+    //console.log(bacon.favorite)
+    bacon.favorite = !bacon.favorite
     let beyArray = this.state.bey
     beyArray.push(bacon)
+    if(!bacon.favorite){ window.alert("Hot sauce in my bag, swag")}
+
+   
     this.setState({
       bey: beyArray.filter(bacon => bacon.favorite)})
     }
-  
-  
+ 
 
   render() {
     return (
       <div className="container">
         <BeyContainer appClickHandler={this.appClickHandler}/>
-        <Favorites bey={this.state.bey}/>
+        <Favorites bey={this.state.bey} appClickHandler={this.appClickHandler}/>
       </div>
     );
   }

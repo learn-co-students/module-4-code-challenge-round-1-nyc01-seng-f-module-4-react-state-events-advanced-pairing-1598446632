@@ -6,6 +6,7 @@ class BeyCard extends React.Component {
 
   clickHandler = () => {
    this.props.appClickHandler(this.props.bey)
+   console.log(this.props)
   }
   render(){
      
