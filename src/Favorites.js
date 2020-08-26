@@ -8,7 +8,6 @@ export default class Favorites extends Component {
   }
 
   render() {
-    // console.log(this.props.bey)
     return (
       <div className="favorites">
         <h1>Favorites</h1>

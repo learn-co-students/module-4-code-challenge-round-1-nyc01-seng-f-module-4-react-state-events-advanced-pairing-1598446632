@@ -5,16 +5,18 @@ import Favorites from './Favorites'
 
 class App extends React.Component {
   state = {
-    beyonces: [],
+    beyonces: []
   }
 
   reverseBey = (beyObject) => {
+    
+    
     beyObject.favorite = !beyObject.favorite
-    if (!beyObject.favorite) {alert("I got a hot sauce in my bag, swag")}
     let beyoncesArray = this.state.beyonces
     beyoncesArray.push(beyObject)
+    if(!beyObject.favorite){ window.alert("Hot sauce in my bag, swag")}
     this.setState({
-      beyonces: beyoncesArray.filter(beyObject => beyObject.favorite) 
+      beyonces: beyoncesArray.filter(beyObject => beyObject.favorite)
     }, () => console.log(`state: `, this.state.beyonces))
     
   }
