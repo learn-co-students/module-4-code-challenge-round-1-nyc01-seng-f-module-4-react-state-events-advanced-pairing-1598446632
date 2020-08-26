@@ -1,12 +1,24 @@
 import React from "react";
+// import beyArray from './api'
 
-const BeyCard = () => {
-  return (
-    <div>
-      <h3>{/*Bey name goes here*/}</h3>
-      {/*image tag goes here*/}
-    </div>
-  );
-};
+class BeyCard extends React.Component {
+
+ 
+  beyClickHandler=()=>{
+    this.props.appClickHandler(this.props.bey)
+  }
+
+  render() {
+    let {bey} =this.props
+    return (
+      <div>
+        <h3>{bey.name}</h3>
+        <img onClick={this.beyClickHandler} src={bey.img} alt=""/>
+      </div>
+    );
+    
+  }
+}
+
 
 export default BeyCard;
