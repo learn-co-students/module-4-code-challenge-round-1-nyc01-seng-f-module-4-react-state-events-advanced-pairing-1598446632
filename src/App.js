@@ -8,6 +8,7 @@ class App extends React.Component {
 
   appClickHandler1 = (bey) => {
     this.state.beys.find(beyObj=> beyObj.id===bey.bey.id).favorite = true
+    this.state.beys.find(beyObj=> beyObj.id===bey.bey.id).num_of_clicks += 1
     this.setState({beys: this.state.beys})
   }
 
