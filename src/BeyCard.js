@@ -11,8 +11,12 @@ class BeyCard extends React.Component {
   } 
      // return this.setState(this.props.appClickHandler(this.props))
 
-  handleClick = () => {
+  beyHandleClick = () => {
     //invoke check favorite
+    console.log(this.props)
+    return this.setState(this.props.appClickHandler(this.props))
+
+
     this.checkFavorite()
   }
 
@@ -20,7 +24,7 @@ class BeyCard extends React.Component {
   return (
     <div>
       <h3>{this.props.name}</h3>
-      <img src={this.props.img} onClick={this.handleClick} />
+      <img src={this.props.img} onClick={this.beyHandleClick} />
     </div>
   );
   }

@@ -6,7 +6,7 @@ class BeyContainer extends React.Component {
 
   beyCard = () => {
     return beyArray.map(beyObj => {
-      return <BeyCard key={beyObj.id} name={beyObj.name} img={beyObj.img} favorite={beyObj.favorite} num_of_clicks={beyObj.num_of_clicks} appClickHandler={this.props.appClickHandler}/>
+      return <BeyCard id={beyObj.id} name={beyObj.name} img={beyObj.img} favorite={beyObj.favorite} num_of_clicks={beyObj.num_of_clicks} appClickHandler={this.props.appClickHandler}/>
     })
   }
 

@@ -10,8 +10,8 @@ state = {name: "",
         }
 
   appClickHandler = (beyObj) =>{
-    console.log("appClickHandler", beyObj.name)
-    this.setState( {name: beyObj.name, img: beyObj.img},
+    console.log("appClickHandler", beyObj)
+    this.setState( {id: beyObj.id, name: beyObj.name, img: beyObj.img, favorite: beyObj.favorite, num_of_clicks: beyObj.num_of_clicks},
       () => console.log(this.state))
   }
   
