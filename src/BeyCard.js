@@ -10,9 +10,7 @@ class BeyCard extends React.Component {
   clickHandler = () => {
     this.setState({
       numClicks: this.props.bey.num_of_clicks += 1
-    })
-    console.log("num clicks", this.props.bey["num_of_clicks"])
-    this.props.reverseBey(this.props.bey)
+    }, () => this.props.reverseBey(this.props.bey)) 
   }
   
   render() {

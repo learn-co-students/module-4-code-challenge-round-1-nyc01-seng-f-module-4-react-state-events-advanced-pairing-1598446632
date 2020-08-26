@@ -4,7 +4,7 @@ import BeyCard from './BeyCard'
 export default class Favorites extends Component {
   
   renderBeys = () => {
-    return this.props.bey.map(beyonceObj => <BeyCard key={beyonceObj.id} bey={beyonceObj}/>)
+    return this.props.bey.map(beyonceObj => <BeyCard key={beyonceObj.id} bey={beyonceObj} reverseBey={this.props.favoriteReverseBey}/>)
   }
 
   render() {

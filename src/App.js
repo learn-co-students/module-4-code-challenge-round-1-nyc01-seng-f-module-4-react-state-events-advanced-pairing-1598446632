@@ -2,30 +2,36 @@ import React from "react";
 import "./App.css";
 import BeyContainer from './BeyContainer.js'
 import Favorites from './Favorites'
+import beyArray from './api.js'
 
 class App extends React.Component {
   state = {
-    beyonces: []
+    beyonces: beyArray,
+    filteredBeyonces: []
   }
 
   reverseBey = (beyObject) => {
-    
-    
-    beyObject.favorite = !beyObject.favorite
-    let beyoncesArray = this.state.beyonces
-    beyoncesArray.push(beyObject)
-    if(!beyObject.favorite){ window.alert("Hot sauce in my bag, swag")}
+    const targetBeyonce = this.state.beyonces.find(beyonce => beyonce.id === beyObject.id)
+    targetBeyonce.favorite = true
     this.setState({
-      beyonces: beyoncesArray.filter(beyObject => beyObject.favorite)
-    }, () => console.log(`state: `, this.state.beyonces))
-    
+      filteredBeyonces: this.state.beyonces.filter(beyonce => beyonce.favorite)
+    }, () => console.log(targetBeyonce, this.state)) 
   }
+
+  favoriteReverseBey = (beyObject) => {
+    const targetBeyonce = this.state.beyonces.find(beyonce => beyonce.id === beyObject.id)
+    targetBeyonce.favorite = false
+    this.setState({
+      filteredBeyonces: this.state.beyonces.filter(beyonce => beyonce.favorite)
+    }, () => console.log(targetBeyonce, this.state)) 
+  }
+
 
   render(){
     return (
       <div className="container">
-        <BeyContainer reverseBey={this.reverseBey}/>
-        <Favorites bey={this.state.beyonces}/>
+        <BeyContainer beyonces={this.state.beyonces} reverseBey={this.reverseBey}/>
+        <Favorites bey={this.state.filteredBeyonces} favoriteReverseBey={this.favoriteReverseBey}/>
       </div>
     );
   }
