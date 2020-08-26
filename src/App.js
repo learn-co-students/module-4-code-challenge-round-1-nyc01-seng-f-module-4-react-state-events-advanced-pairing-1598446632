@@ -6,20 +6,23 @@ import "./App.css";
 class App extends React.Component {
 
   state = {
-    bey: {}
+    bey: []
   }
 
   clickHandler = (beyObj) => {
-    let beyFavBool;
+    // let beyFavBool;
+    console.log(beyObj.favorite)
     if (beyObj.favorite === false) {
-      beyFavBool = beyObj.favorite = true
+      beyObj.favorite = true
     }
     console.log("I'm in the App")
-    this.setState({ bey: beyFavBool }, () => console.log(this.state.bey))
+    let newArr = [...this.state.bey, beyObj]
+    // cleanNewArr if we cleaned up newArr to keep single source of truth before passing to favContainer, we should be good
+    this.setState({ bey: newArr}, () => console.log("async click", this.state.bey))
   }
 
   render() {
-    console.log("Rendering Action in App")
+    console.log("Rendering Action in App", this.state.bey)
 
     let clicked = this.clickHandler;
     // { (this.props.appState.favorite === true) ? <BeyCard bey={this.props.appState} /> : null }
