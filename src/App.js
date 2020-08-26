@@ -1,29 +1,36 @@
 import React from "react";
 import "./App.css";
+import beyArray from "./api"
 import BeyContainer from "./BeyContainer"
 import Favorites from "./Favorites"
 
 
 class App extends React.Component {
 
-  state = { favoriteBeys : [] }
+  state = { 
+    favoriteBeys : [],
+    beyArray: beyArray 
+  }
 
   selectBeys =  (beyObj) => {
-    console.log(beyObj)
-    if (beyObj.favorite === true){
-      let newArray = this.state.favoriteBeys.concat(beyObj)
-      this.setState({favoriteBeys: newArray})
-    } else{ 
-      let filteredArray = this.state.favoriteBeys.filter((bey)=>bey.favorite === false)
-      this.setState({favoriteBeys: filteredArray})
-    }
+      beyObj.favorite = !beyObj.favorite
+      this.setState({favoriteBeys: [...this.state.favoriteBeys, beyObj]})
+  }
+
+  deSelectBeys = (beyObj) => {
+      beyObj.favorite = !beyObj.favorite
+      let filteredArray = this.state.favoriteBeys.filter((bey) => bey.id !== beyObj.id)
+      this.setState({
+        favoriteBeys: filteredArray,
+        beyArray: filteredArray.concat(beyObj)
+      })
   }
 
   render(){
     return (
       <div className="container">
-        <BeyContainer selectBeys={this.selectBeys}/>
-        <Favorites favBeys={this.state.favoriteBeys}/>
+        <BeyContainer selectBeys={this.selectBeys} beyArray={this.state.beyArray}/>
+        <Favorites favBeys={this.state.favoriteBeys} deSelectBeys={this.deSelectBeys}/>
       </div>
     );
   }  

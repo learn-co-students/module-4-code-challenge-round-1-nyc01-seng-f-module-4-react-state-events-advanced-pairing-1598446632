@@ -2,38 +2,26 @@ import React from "react";
 
 class BeyCard extends React.Component {
 
-  constructor(props){
-    super()
-    this.state = {
-      id: props.bey.id,
-      name: props.bey.name,
-      img: props.bey.img,
-      favorite: props.bey.favorite,
-      num_of_clicks: props.bey.num_of_clicks
-    }
+  addHandler = () => {
+    this.props.selectBeys(this.props.bey)
   }
 
-  // state = {
-  //   favorite: false,
-  //   num_of_clicks: this.props.bey.num_of_clicks
-  // }
-
   removeHandler = () => {
-    
-    this.setState({favorite: !this.state.favorite}, () => this.props.selectBeys(this.state))
+    this.props.deSelectBeys(this.props.bey)
   }
 
   clickHandler = () => {
-    this.setState({num_of_clicks: this.state.num_of_clicks + 1}, () => this.props.sortingBeys(this.state))
+    this.props.sortingBeys(this.props.bey)
   }
 
   render(){
     return (
       <div>
-        <h3>{this.state.name}</h3>
-        <img alt="BEY" onClick={this.clickHandler} src={this.state.img} />
-        <h4> {this.state.num_of_clicks} times clicked</h4>
-        <button onClick={this.removeHandler}>{this.state.favorite === false ? "Add" : "Remove"}</button>
+        <h3>{this.props.bey.name}</h3>
+        <img alt="BEY" onClick={this.clickHandler} src={this.props.bey.img} />
+        <h4> {this.props.bey.num_of_clicks} times clicked</h4>
+        {this.props.bey.favorite === false ? <button onClick={this.addHandler}>Add</button> : null }
+        {this.props.favIdex ? <button onClick={this.removeHandler}>Remove</button> : null }
       </div>
     );
   }

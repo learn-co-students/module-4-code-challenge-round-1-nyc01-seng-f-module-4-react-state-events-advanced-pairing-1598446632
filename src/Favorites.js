@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import BeyCard from "./BeyCard"
 
 export default class Favorites extends Component {
-  
+
   beys = () => {
-    return this.props.favBeys.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} selectBeys={this.props.selectBeys}/>)
+    return this.props.favBeys.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} deSelectBeys={this.props.deSelectBeys} favIdex={true}  />)
   }
 
   render() {
