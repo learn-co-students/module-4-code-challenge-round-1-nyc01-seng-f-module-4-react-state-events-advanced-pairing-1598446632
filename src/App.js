@@ -5,13 +5,13 @@ import Favorites from "./Favorites"
 import beyArray from "./api"
 import Form from './Form'
 
+
 //need to hold state in the lowest common parent - that's where we pull in API
 
 class App extends React.Component {
   
   state = {beyArray: beyArray}
   //our default state will be our original API
-
 
 containerClickHandler = (id) => {
     // console.log("this.state", this.state)  
@@ -55,15 +55,22 @@ submitHandler = (newBeyObj) => {
 }
 
 
+// filteredNames = () => {
+//   return this.state.beyArray.filter(name => name.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+// }
+
+
   render() { 
-    console.log("original array", beyArray)
-    console.log("state in render", this.state.beyArray)
+    // console.log("original array", beyArray)
+    // console.log("state in render", this.state.beyArray)
+    // let names = this.filteredNames().map(beyObj => <BeyContainer key={beyObj.id} bey={beyObj} /> )
     
   return (
     <div className="container">
       <BeyContainer array={this.state.beyArray} clickHandler={this.containerClickHandler} />
       <Favorites array={this.filteredBey()} clickHandler={this.favoriteClickHandler}/>
       <Form submitHandler={this.submitHandler}/>
+      
     </div>
   )}
 };

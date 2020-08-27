@@ -1,12 +1,28 @@
 import React from "react";
 import BeyCard from "./BeyCard.js"
+import Search from './Search'
 
 
 
 class BeyContainer extends React.Component {
 
-  beyCard = () => {
-     return this.props.array.map(beyObj => {  
+state={
+  searchValue: "",
+}
+
+searchHandler =(e) =>{
+  e.preventDefault()
+  console.log("searchhandler", e.target.value)
+  this.setState({searchValue: e.target.value})
+}
+filterBeys=()=>{
+  return this.props.array.filter((beyObj) => beyObj.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+}
+  
+
+
+beyCard = () => {
+     return this.filterBeys().map(beyObj => {  
       return <BeyCard key={beyObj.id} beyObj={beyObj} clickHandler={this.props.clickHandler}/>
     })
   }
@@ -16,11 +32,19 @@ class BeyContainer extends React.Component {
   //remember to invoke this below, as well as display it on the beyCard.js
 
 
+
+  changeHandler = (e) =>{
+    this.setState({searchValue: e.target.value})
+    // console.log(e.target.value)
+  }
+
+
   render() {
     // console.log(this.beyCard)
     return (
       <div className="index">
         <h1>Index</h1>
+        <Search searchValue={this.state.searchValue} changeHandler={this.changeHandler}/>
         {this.beyCard()}
       </div>
     );
