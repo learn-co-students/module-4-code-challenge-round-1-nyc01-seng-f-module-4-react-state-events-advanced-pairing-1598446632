@@ -15,7 +15,7 @@ class App extends React.Component {
   appClickHandler=(bey_object)=>{
 
     let newArray = [...beyArray]
-    let filteredObj = newArray.find((obj)=> obj.id === bey_object.id )
+    let filteredObj = newArray.find((obj)=> obj.name === bey_object.name )
     filteredObj.favorite = true
     console.log(filteredObj)
     this.setState({bey:newArray}) 
@@ -26,15 +26,12 @@ class App extends React.Component {
       let newArray = [...beyArray]
       let filteredObj = newArray.find((obj)=> obj.id === bey_object.id )
       filteredObj.favorite = false
-      console.log(filteredObj)
       this.setState({bey:newArray}) 
     }
 
     submitHandler=(obj)=>{
-    
-      let newArray=[...beyArray, obj]
-      console.log(newArray)
-      this.setState( {bey:newArray} , ()=>{console.log("new state:", this.state.beyArray)})
+      console.log(obj)
+      this.setState( {bey:[...this.state.bey, obj]} , ()=>{console.log("new state:", this.state.bey)})
     }
 
     searchHandler=(e)=>{
@@ -44,7 +41,7 @@ class App extends React.Component {
     }
     
     filteredBeys=()=>{
-      return this.state.filteredBey.filter((bey)=>bey.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+      return this.state.bey.filter((bey)=>bey.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
     }
 
     render(){
@@ -56,7 +53,7 @@ class App extends React.Component {
         <BeyContainer 
         appClickHandler={this.appClickHandler} 
         submitHandler={this.submitHandler} 
-        beyArray={filteredBey}
+        beyArray={this.filteredBeys()}
         searchHandler={this.searchHandler}
         />
         <Favorites bey={favArray} favoriteContainer={this.favoriteContainer}/>
