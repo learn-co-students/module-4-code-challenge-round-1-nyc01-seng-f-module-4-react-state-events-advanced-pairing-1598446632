@@ -1,0 +1,20 @@
+import React, { Component } from "react";
+import BeyCard from "../Components/BeyCard";
+
+class Favorites extends Component {
+
+  render() {
+
+    let mapFav =()=> this.props.bey.map((bey)=> <BeyCard bey={bey} appClickHandler={this.props.favoriteContainer}/>)
+    
+    return (
+      <div className="favorites">
+        <h1>Favorites</h1>
+        {mapFav()}
+        
+      </div>
+    );
+  }
+}
+
+export default Favorites
