@@ -3,7 +3,7 @@ import "./App.css";
 import BeyContainer from "./BeyContainer"
 import Favorites from "./Favorites"
 import beyArray from "./api"
-import Form from './form'
+import Form from './Form'
 
 //need to hold state in the lowest common parent - that's where we pull in API
 
@@ -44,11 +44,26 @@ containerClickHandler = (id) => {
     this.setState({beyArray: newArray}, () => window.alert("I got a hot sauce in my bag, swag"))  //update state to the modified array - greenlights re-render
   }
 
+
+submitHandler = (newBeyObj) => {
+  console.log("new bey obj", newBeyObj)
+  console.log("this.state: object containing array", this.state)
+  console.log("this.state.beyArray: array of objects", this.state.beyArray)
+  let newArray = [...this.state.beyArray, newBeyObj] //access the state defined in this class as beyarray, add new object to the array
+  console.log("newArray", newArray)
+  this.setState({beyArray: newArray}, () => {console.log("check new array", this.state.beyArray)})
+}
+
+
   render() { 
+    console.log("original array", beyArray)
+    console.log("state in render", this.state.beyArray)
+    
   return (
     <div className="container">
-      <BeyContainer array={beyArray} clickHandler={this.containerClickHandler} />
+      <BeyContainer array={this.state.beyArray} clickHandler={this.containerClickHandler} />
       <Favorites array={this.filteredBey()} clickHandler={this.favoriteClickHandler}/>
+      <Form submitHandler={this.submitHandler}/>
     </div>
   )}
 };
