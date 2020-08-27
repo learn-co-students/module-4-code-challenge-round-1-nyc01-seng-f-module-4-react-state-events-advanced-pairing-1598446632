@@ -46,7 +46,7 @@ filteredBeys = () => {
                     searchHandler = {this.searchHandler}
                     userInput = {this.state.userInput}
                     changeHandler = {this.changeHandler}/>
-      <Favorites array = {this.filteredBeys()} clickHandler={this.containerClickHandler}/>
+      <Favorites array = {this.filteredBeys()} clickHandler={this.containerClickHandler} userInput = {this.state.userInput}/>
     </div>
   );
 }
