@@ -18,8 +18,8 @@ class BeyCard extends React.Component {
     return (
       <div>
         <h3>{this.props.bey.name}</h3>
-        <img alt="BEY" onClick={this.props.containerIndex ? this.clickHandler : null } src={this.props.bey.img} />
-        <h4> {this.props.bey.num_of_clicks} times clicked</h4>
+        <img alt="BEY" onClick={this.props.containerIndex ? this.clickHandler : null } src={this.props.bey.img} /><br></br>
+        {this.props.favIdex ? null : <h4> {this.props.bey.num_of_clicks} times clicked</h4> }
         {this.props.bey.favorite === false ? <button onClick={this.addHandler}>Add</button> : null }
         {this.props.favIdex ? <button onClick={this.removeHandler}>Remove</button> : null }
       </div>
