@@ -5,10 +5,10 @@ export default class FavoritesContainer extends Component {
 
     renderFavorites = () => {
       if (this.props.appState.length > 0) {
-      return this.props.appState.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} /> )
-      } else {
-        return null
-      }
+        return this.props.appState.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} /> )
+        } else {
+          return null
+        }
 
       // const favArr = []
       // if (this.props.appState.length > 0) {
