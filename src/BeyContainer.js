@@ -1,14 +1,19 @@
 import React from "react";
-import beyArray from "./api.js"
 import BeyCard from "./BeyCard.js"
+
+
 
 class BeyContainer extends React.Component {
 
   beyCard = () => {
-    return beyArray.map(beyObj => {
-      return <BeyCard id={beyObj.id} name={beyObj.name} img={beyObj.img} favorite={beyObj.favorite} num_of_clicks={beyObj.num_of_clicks} appClickHandler={this.props.appClickHandler}/>
+     return this.props.array.map(beyObj => {  
+      return <BeyCard key={beyObj.id} beyObj={beyObj} clickHandler={this.props.clickHandler}/>
     })
   }
+
+  //need to access props from App - can access the array and iterate over it to come up with values for each beyCard. 
+  // pass through id and whole object, can choose specific values in the beyCard 
+  //remember to invoke this below, as well as display it on the beyCard.js
 
 
   render() {
@@ -21,5 +26,4 @@ class BeyContainer extends React.Component {
     );
   }
 }
-
 export default BeyContainer;
