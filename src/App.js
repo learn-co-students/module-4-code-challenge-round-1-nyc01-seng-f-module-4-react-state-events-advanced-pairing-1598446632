@@ -34,7 +34,7 @@ submitHandler = event => {
       
 searchHandler = event => {
         event.preventDefault()
-        let input = event.target.value.toUpperCase() //why input is underfined?
+        let input = event.target.value.toUpperCase() 
         console.log(input)
         // next steps:
         // need to set new state "matchesSearch" 
