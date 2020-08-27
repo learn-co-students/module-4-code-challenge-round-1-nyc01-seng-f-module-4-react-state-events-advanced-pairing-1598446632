@@ -18,22 +18,20 @@ class BeyCard extends React.Component {
   //   num_of_clicks: this.props.bey.num_of_clicks
   // }
 
-  removeHandler = () => {
-    
-    this.setState({favorite: !this.state.favorite}, () => this.props.selectBeys(this.state))
-  }
+ 
 
   clickHandler = () => {
-    this.setState({num_of_clicks: this.state.num_of_clicks + 1}, () => this.props.sortingBeys(this.state))
+    this.setState(this.props.selectBeys)
   }
 
   render(){
+    console.log(this.state.num_of_clicks,this.state.name)
     return (
       <div>
         <h3>{this.state.name}</h3>
         <img alt="BEY" onClick={this.clickHandler} src={this.state.img} />
         <h4> {this.state.num_of_clicks} times clicked</h4>
-        <button onClick={this.removeHandler}>{this.state.favorite === false ? "Add" : "Remove"}</button>
+
       </div>
     );
   }
