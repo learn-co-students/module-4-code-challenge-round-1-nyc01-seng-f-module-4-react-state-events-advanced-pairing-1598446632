@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import BeyCard from './BeyCard';
 
 export default class Favorites extends Component {
   render() {
-    return (
+    
+    let beys = this.props.array.map((card) => <BeyCard key={card.id} bey={card} clickHandler={this.props.clickHandler}/>)
+    
+    return ( 
       <div className="favorites">
         <h1>Favorites</h1>
-        {/*list of beys*/}
+        {beys}
       </div>
     );
   }
