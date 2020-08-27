@@ -3,36 +3,62 @@ import "./App.css";
 import BeyContainer from "./Containers/BeyContainer.js"
 import Favorites from "./Components/Favorites.js"
 import api from './api.js'
+import Form from './Components/form';
 
 class App extends React.Component {
 
 
   state = {
-    data: api,
-    num_of_clicks: 0   
+    beyArr: api
   }
+
+  contClickHandler=(beyObjId)=>{
+    let newArr = [...this.state.beyArr]
+    let foundResult = newArr.find((beyObj) => beyObj.id === beyObjId)
+    foundResult.favorite = true
+    foundResult.num_of_clicks = foundResult.num_of_clicks +1
+
+    this.setState({ beyArr: newArr })
+  }
+
 
   favClickHandler=(beyObjId)=>{
+    let newArray = [...this.state.beyArray]
+    let foundObj = newArray.find((beyObj) => beyObj.id === beyObjId)
+    foundObj.favorite = false
 
-    let result = this.state.data.find(foundResult => foundResult.id === beyObjId);
-    // console.log(result);
-    result.favorite = !result.favorite
-    let newCount = result.num_of_clicks += 1
-    // return newCount
-    // this.setState({data: newCount},)
-    console.log(newCount)
-
+    this.setState({ beyArr: newArray })
   }
+
+  filteredBeys = () => {
+    return this.state.beyArr.filter((beyObj) => beyObj.favorite)
+  }
+
+  sortedBeys = () => {
+    return this.state.beyArr.sort((beyObjA, beyObjB) => beyObjB.num_of_clicks - beyObjA.num_of_clicks)
+  }
+
+
+  handleFormData = ({ name, img }) => {
+    let newBeyArr = [...this.state.beyArr, {favorite: false, id:50, name, img, num_of_clicks: 0}]
+    this.setState( { beyArr: newBeyArr } )
+  }
+
+
 
 
   render() {
-    let favArr = this.state.data.filter(blah => blah.favorite === true )
-    
-  return (
+    return (
+    <>
     <div className="container">
-      <BeyContainer favClickHandler={this.favClickHandler} beyArr={this.state.data} />
-      <Favorites beyArr={favArr}/>
+      <BeyContainer clickHandler={this.contClickHandler} arr={this.sortedBeys()} />
+      <Favorites clickHandler={this.favClickHandler} arr={this.filteredBeys()} />
     </div>
+
+    <div className="form">
+        <Form handleFormData={this.handleFormData} />
+    </div>
+    </>
   );
 };
 

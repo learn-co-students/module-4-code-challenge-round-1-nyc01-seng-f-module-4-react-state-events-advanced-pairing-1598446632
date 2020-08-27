@@ -6,7 +6,7 @@ export default class Favorites extends Component {
 
 
   render() {
-    let bey = this.props.beyArr
+    let bey = this.props.arr
     let beyArr = bey.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} />);
     
 
