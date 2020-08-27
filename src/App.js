@@ -26,13 +26,38 @@ class App extends React.Component {
     this.setState({beys: this.state.beys})
   }
 
-  state = {beys: beyArray}
+  createBey = ({name,img}) => {
+    const beyObj = {
+      "id": this.state.beys.length + 1,
+      "name": `${name}`,
+      "img": `${img}`,
+      "favorite": false,
+      "num_of_clicks": 0
+    }
+    this.setState({beys: [...this.state.beys,beyObj]})
+  }
+
+  searchHandler = (event) => {
+    this.setState({searchTerm: event.target.value})
+  }
+
+  filteredBeys = () => {
+    return (
+      this.state.beys.filter(bey => bey.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    )
+  }
+
+  state = {
+            beys: beyArray,
+            searchTerm: ""
+          }
 
   render() {
     return (
       <div className="container">
-        <BeyContainer appClickHandler={this.appClickHandler1} beys={this.state.beys}/>
-        <Favorites appClickHandler={this.appClickHandler2} beys={this.state.beys}/>
+        <BeyContainer appClickHandler={this.appClickHandler1} beys={this.filteredBeys()} 
+          createBey={this.createBey} searchTerm={this.state.searchTerm} searchHandler={this.searchHandler}/>
+        <Favorites appClickHandler={this.appClickHandler2} beys={this.filteredBeys()}/>
       </div>
     )
   }
