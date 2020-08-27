@@ -37,3 +37,11 @@ You are given an api.js file that exports an array of objects that look like thi
 ![beyonce gif](bey-slay.gif)
 
 
+# Updated Deliverables
+
+  - Add a create form so a user can add their own gif to the Index (do not worry about the new object having an id)
+  - Add a responsive search form for the BeyContainer that allows me to filter the BeyCards by name
+  
+Bonus:
+	- refactor your search form so that it searches the ENTIRE application
+      - This means that when you search for the name of a gif, both the BeyContainer AND the Favorites should filter through their lists
