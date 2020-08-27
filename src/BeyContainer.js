@@ -9,10 +9,15 @@ class BeyContainer extends React.Component {
     return (
       <div className="index">
         <h1>Index</h1>
-        <input type="text"  onKeyUp={event => this.props.searchHandler(event)} placeholder="Search for names.." ></input>
+        <input type="text"  name = "userInput"
+               onKeyUp={event => this.props.searchHandler(event)} 
+               value={this.props.userInput}
+               onChange = {event => this.props.changeHandler(event)} > 
+        </input>
         {beys}
       </div>
-    );
+    )
+    
   }
 }
 

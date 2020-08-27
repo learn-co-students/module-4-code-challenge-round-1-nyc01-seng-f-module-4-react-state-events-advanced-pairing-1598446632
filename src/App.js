@@ -10,7 +10,8 @@ class App extends React.Component{
 state = {
   beyArray: beyArray,
   gifName: "gif name",
- gifUrl: "gif url"
+  gifUrl: "gif url",
+  userInput: "Search for name"
 }
 
 containerClickHandler = (id) =>{
@@ -33,6 +34,16 @@ submitHandler = event => {
       
 searchHandler = event => {
         event.preventDefault()
+        let input = event.target.value.toUpperCase() //why input is underfined?
+        console.log(input)
+        // next steps:
+        // need to set new state "matchesSearch" 
+        // create filter function which: 
+              // copy beyArray
+              // change false to true for those beyObj.name that matches input
+              // update state beyArray => beyContainer will only render cards that matches search input
+      
+
 
 }
 
@@ -44,11 +55,15 @@ filteredBeys = () => {
   return ( 
     <div className="container">
       <Form formData = {this.state} changeHandler = {this.changeHandler} submitHandler = {this.submitHandler}/>
-      <BeyContainer array = {this.state.beyArray} clickHandler={this.containerClickHandler} searchHandler = {this.searchHandler}/>
+      <BeyContainer array = {this.state.beyArray} 
+                    clickHandler={this.containerClickHandler} 
+                    searchHandler = {this.searchHandler}
+                    userInput = {this.state.userInput}
+                    changeHandler = {this.changeHandler}/>
       <Favorites array = {this.filteredBeys()} clickHandler={this.containerClickHandler}/>
     </div>
   );
-};
+}
 }
 
 export default App;
