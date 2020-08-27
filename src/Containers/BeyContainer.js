@@ -1,7 +1,8 @@
 import React from "react";
-import beyArray from '../api'
-import BeyCard from '../Components/BeyCard'
-import Form from '../Components/Form'
+import BeyCard from '../Components/BeyCard';
+import Form from '../Components/Form';
+import Search from '../Components/Search'
+
 
 class BeyContainer extends React.Component {
 
@@ -12,6 +13,7 @@ class BeyContainer extends React.Component {
       <div className="index">
         <h1>Index</h1>
         <Form submitHandler={this.props.submitHandler}/>
+        <Search searchHandler={this.props.searchHandler}/>
         {fetchBey}
       </div>
     );

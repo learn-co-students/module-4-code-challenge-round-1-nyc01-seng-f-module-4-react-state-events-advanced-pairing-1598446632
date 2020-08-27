@@ -6,7 +6,11 @@ import beyArray from './api'
 
 class App extends React.Component {
 
-  state={ bey: beyArray}
+  state={ 
+    bey: beyArray,
+    filteredBey: beyArray,
+    searchValue: ""
+  }
 
   appClickHandler=(bey_object)=>{
 
@@ -33,12 +37,28 @@ class App extends React.Component {
       this.setState( {bey:newArray} , ()=>{console.log("new state:", this.state.beyArray)})
     }
 
+    searchHandler=(e)=>{
+      console.log(e.target.value)
+
+      this.setState({searchValue:e.target.value})
+    }
+    
+    filteredBeys=()=>{
+      return this.state.filteredBey.filter((bey)=>bey.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+    }
+
     render(){
     let  favArray = this.state.bey.filter((bey)=> bey.favorite)
+    let filteredBey = this.filteredBeys()
 
     return (
       <div className="container">
-        <BeyContainer appClickHandler={this.appClickHandler} submitHandler={this.submitHandler} beyArray={this.state.bey}/>
+        <BeyContainer 
+        appClickHandler={this.appClickHandler} 
+        submitHandler={this.submitHandler} 
+        beyArray={filteredBey}
+        searchHandler={this.searchHandler}
+        />
         <Favorites bey={favArray} favoriteContainer={this.favoriteContainer}/>
       </div>
     );
