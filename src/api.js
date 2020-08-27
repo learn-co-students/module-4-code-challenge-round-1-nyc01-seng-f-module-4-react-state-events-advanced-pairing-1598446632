@@ -36,4 +36,4 @@ let beyArray = [
   }
 ]
 
-export default beyArray
+export { beyArray }
