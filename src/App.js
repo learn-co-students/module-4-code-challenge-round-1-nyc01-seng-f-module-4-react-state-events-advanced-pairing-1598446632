@@ -1,36 +1,61 @@
 import React from "react";
+import "./App.css";
+import beyArray from './api'
 import BeyContainer from './Containers/BeyContainer'
 import FavoritesContainer from './Containers/FavoritesContainer'
-import "./App.css";
-
+import Form from './Components/Form'
 class App extends React.Component {
 
   state = {
-    bey: []
+    beyArray: beyArray
   }
 
-  clickHandler = (beyObj) => {
-    // let beyFavBool;
-    console.log(beyObj.favorite)
-    if (beyObj.favorite === false) {
-      beyObj.favorite = true
-    }
-    console.log("I'm in the App")
-    let newArr = [...this.state.bey, beyObj]
-    // cleanNewArr if we cleaned up newArr to keep single source of truth before passing to favContainer, we should be good
-    this.setState({ bey: newArr}, () => console.log("async click", this.state.bey))
+  containerClickHandler = (id) => {
+    // Our App needs a way to know which object was clicked on
+    console.log("ID in App: ", id)
+    // Our array needs to be appropriately updated
+    let newArray = [...this.state.beyArray]
+    let foundObj = newArray.find((beyObj) => beyObj.id === id)
+    foundObj.favorite = true
+    foundObj.num_of_clicks = foundObj.num_of_clicks + 1
+    // console.log(foundObj)
+    // Our app needs to rerender
+    this.setState({ beyArray: newArray })
   }
+
+  favoriteClickHandler = (id) => {
+    let newArray = [...this.state.beyArray]
+    let foundObj = newArray.find((beyObj) => beyObj.id === id)
+    foundObj.favorite = false
+
+    this.setState({ beyArray: newArray }, () => window.alert("I got a hot sauce in my bag, swag"))
+
+  }
+
+  filteredBeys = () => {
+    return this.state.beyArray.filter((beyObj) => beyObj.favorite)
+  }
+
+  sortedBeys = () => {
+    return this.state.beyArray.sort((beyObjA, beyObjB) => beyObjB.num_of_clicks - beyObjA.num_of_clicks)
+  }
+
+  submitHandler = (beyObj) => {
+    
+    let newArray = [...this.state.beyArray, beyObj]
+ 
+    this.setState({beyArray: newArray})
+  }
+
+  
 
   render() {
-    console.log("Rendering Action in App", this.state.bey)
-
-    let clicked = this.clickHandler;
-    // { (this.props.appState.favorite === true) ? <BeyCard bey={this.props.appState} /> : null }
 
     return (
       <div className="container">
-        <BeyContainer clicked={clicked} />
-        <FavoritesContainer appState={this.state.bey}/>
+        <Form submitHandler={this.submitHandler}/>
+        <BeyContainer array={this.sortedBeys()} clickHandler={this.containerClickHandler} />
+        <FavoritesContainer array={this.filteredBeys()} clickHandler={this.favoriteClickHandler} />
       </div>
     );
   }
