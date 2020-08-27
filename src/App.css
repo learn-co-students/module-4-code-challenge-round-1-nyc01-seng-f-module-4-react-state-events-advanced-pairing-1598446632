@@ -32,15 +32,25 @@
 }
 
 .container {
-  display: flex;
+  display: inline-flex;
+  justify-content: space-evenly;
+  width: 100%;
+  text-align: center;
 }
-.index {
-  width: 50%;
-}
-.favorites {
-  width: 50%;
-}
-img {
+
+.container > div {
   width: 30%;
+}
+
+.newForm {
+  height: 400px;
+}
+
+.searchForm{
+  height: 100px;
+}
+
+img {
+  width: 55%;
   height: 30%;
 }
