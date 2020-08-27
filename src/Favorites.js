@@ -5,7 +5,7 @@ export default class Favorites extends Component {
 
   render() {
 
-    let mapFav =()=> this.props.bey.map((bey)=> <BeyCard bey={bey} onClick={this.this.beyClickHandler}/>)
+    let mapFav =()=> this.props.bey.map((bey)=> <BeyCard bey={bey} beyClickHandler={this.props.favoriteContainer}/>)
     
     return (
       <div className="favorites">

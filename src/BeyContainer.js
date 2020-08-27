@@ -5,7 +5,6 @@ import BeyCard from './BeyCard'
 class BeyContainer extends React.Component {
 
   
-  
   render() {
     
     let fetchBey = beyArray.map((bey)=><BeyCard bey={bey} appClickHandler={this.props.appClickHandler}/>)
