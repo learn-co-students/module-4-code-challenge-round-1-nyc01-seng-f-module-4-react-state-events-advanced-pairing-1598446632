@@ -3,6 +3,7 @@ import "./App.css";
 import BeyContainer from "./BeyContainer"
 import Favorites from "./Favorites"
 import beyArray from "./api"
+import Form from "./Form"
 
 
 class App extends React.Component {
@@ -47,19 +48,26 @@ class App extends React.Component {
           this.setState({sortedBeyArray: newSortedBeys,
             favoriteBeys: filteredArray
           })
+        }
 
-      // let filteredArray = this.state.favoriteBeys.filter((bey)=>bey.id !==beyObj.id)
-      // this.setState({favoriteBeys: filteredArray})
-    
-  }
+          newBey = (beyObj) =>{
+            let newBeyArray = this.state.sortedBeyArray;
+            newBeyArray.push(beyObj);
+            newBeyArray.sort(function(a,b){return b.num_of_clicks - a.num_of_clicks})
+            this.setState({
+              ...this.state,
+              sortedBeyArray: newBeyArray
+            })
 
-  
 
-  // this.setState({num_of_clicks: this.state.num_of_clicks + 1}, () => this.props.sortingBeys(this.state))
+
+          }
+
 
   render(){
     return (
       <div className="container">
+        <Form add={this.newBey}/>
         <BeyContainer sortBeys = {this.state.sortedBeyArray} selectBeys={this.selectBeys}/>
         <Favorites favBeys={this.state.favoriteBeys} selectBeys={this.removeBeys}/>
       </div>

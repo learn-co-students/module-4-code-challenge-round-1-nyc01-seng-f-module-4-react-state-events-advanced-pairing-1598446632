@@ -25,7 +25,7 @@ class BeyCard extends React.Component {
   }
 
   render(){
-    console.log(this.state.num_of_clicks,this.state.name)
+
     return (
       <div>
         <h3>{this.state.name}</h3>
