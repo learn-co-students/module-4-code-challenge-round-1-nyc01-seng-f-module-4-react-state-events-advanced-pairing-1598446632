@@ -1,21 +1,14 @@
 import React from "react";
 
-class BeyCard extends React.Component {
-  
 
-  clickHandler = () => {
-    this.props.appClickHandler(this.props.beyInfo)
-  }
-
-  render() {
+  const BeyCard = (props) => {
     return (
       <div>
-        <h3>{this.props.beyInfo.name}</h3>
-        <img onClick={this.clickHandler} alt={this.props.beyInfo.name} src={this.props.beyInfo.img}/>
+        <h3>{props.bey.name}</h3>
+        {props.favorite ? null : <h2>{props.bey.num_of_clicks}</h2>}
+        <img alt="bey" onClick={function () { props.clickHandler(props.bey.id) }} src={props.bey.img} />
       </div>
     );
-  }
-  
-};
+  };
 
 export default BeyCard;
