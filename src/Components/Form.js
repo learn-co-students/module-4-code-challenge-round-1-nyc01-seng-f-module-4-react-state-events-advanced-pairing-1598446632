@@ -11,7 +11,7 @@ class Form extends React.Component {
     }
 
     changeHandler = (e) => {
-        //how does this work?
+        //e.target.name becomes the key name of the target the event is submitting
         this.setState({ [e.target.name]: e.target.value })
     }
     
@@ -25,7 +25,7 @@ class Form extends React.Component {
                 e.preventDefault()
                 console.log(e.target)
 
-                this.props.submitHandler({img: e.target[0].value, name: e.target[1].value})
+                this.props.submitHandler( {img: e.target[0].value, name: e.target[1].value} )
 
             }}>
 

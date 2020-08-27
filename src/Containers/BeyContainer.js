@@ -1,11 +1,23 @@
 import React from "react";
 import BeyCard from '../Components/BeyCard'
-import beyArray from '../api'
-// import Form from '../Components/Form'
+// import beyArray from '../api'
+import Search from '../Components/Search'
 class BeyContainer extends React.Component {
 
+  state = {
+    searchTerm: ""
+  }
+
+  filterBeys = () => {
+    return this.props.array.filter((beyObj) => beyObj.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+  }
+
   beys = () => {
-    return this.props.array.map((beyObj) => <BeyCard key={beyObj.id} bey={beyObj} clickHandler={this.props.clickHandler} />)
+    return this.filterBeys().map((beyObj) => <BeyCard key={beyObj.id} bey={beyObj} clickHandler={this.props.clickHandler} />)
+  }
+
+  changeHandler = (e) => {
+    this.setState({ searchTerm: e.target.value })
   }
 
   // state = {
@@ -20,7 +32,8 @@ class BeyContainer extends React.Component {
   render() {
     return (
       <div className="index">
-        {/* <Form submitHandler={this.submitHandler}/> */}
+        <Search changeHandler={this.changeHandler}/>
+      
         <h1>Index</h1>
         {this.beys()}
       </div>

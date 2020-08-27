@@ -11,15 +11,12 @@ class App extends React.Component {
   }
 
   containerClickHandler = (id) => {
-    // Our App needs a way to know which object was clicked on
-    console.log("ID in App: ", id)
-    // Our array needs to be appropriately updated
+    
     let newArray = [...this.state.beyArray]
     let foundObj = newArray.find((beyObj) => beyObj.id === id)
     foundObj.favorite = true
     foundObj.num_of_clicks = foundObj.num_of_clicks + 1
-    // console.log(foundObj)
-    // Our app needs to rerender
+    
     this.setState({ beyArray: newArray })
   }
 
