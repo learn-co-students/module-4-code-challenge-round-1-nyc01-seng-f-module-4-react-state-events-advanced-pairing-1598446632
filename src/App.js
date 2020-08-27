@@ -3,6 +3,7 @@ import "./App.css";
 import beyArray from './api.js'
 import BeyContainer from './BeyContainer'
 import Favorites from './Favorites'
+import BeyForm from './BeyForm'
 
 class App extends React.Component {
 
@@ -55,8 +56,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
+      <h1>Make your own Bey!</h1><br/>
+        <BeyForm createBey={this.createBey}/><br/>
         <BeyContainer appClickHandler={this.appClickHandler1} beys={this.filteredBeys()} 
-          createBey={this.createBey} searchTerm={this.state.searchTerm} searchHandler={this.searchHandler}/>
+          searchTerm={this.state.searchTerm} searchHandler={this.searchHandler}/>
         <Favorites appClickHandler={this.appClickHandler2} beys={this.filteredBeys()}/>
       </div>
     )

@@ -11,7 +11,7 @@ class BeyForm extends React.Component {
     }
 
     changeHandler = (event) => {
-        this.setState({[event.target.name]:event.target.value,})
+        this.setState({[event.target.name]:event.target.value})
     }
 
     resetState = () => {
@@ -43,7 +43,7 @@ class BeyForm extends React.Component {
                     value={this.state.name}
                     onChange={event => this.changeHandler(event)}
                 />
-                </label>
+                </label><br/>
                 <label>
                 Image URL
                 <input 
