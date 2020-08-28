@@ -9,8 +9,10 @@ import Form from "./Form"
 class App extends React.Component {
 
   state = { 
+    originalBeys: beyArray.sort(function(a,b){return b.num_of_clicks - a.num_of_clicks}),
   sortedBeyArray: beyArray.sort(function(a,b){return b.num_of_clicks - a.num_of_clicks}),
-  favoriteBeys: []
+  favoriteBeys: [],
+  searchBeys: []
 
 
 }
@@ -58,16 +60,20 @@ class App extends React.Component {
               ...this.state,
               sortedBeyArray: newBeyArray
             })
-
-
-
+          }
+          searchingBeys = (string) => {
+            let searchArray = this.state.sortedBeyArray.filter((bey)=>bey.name.toLowerCase().includes(string.toLowerCase()));
+            this.setState({
+              ...this.state,
+              searchBeys: searchArray
+            })
           }
 
 
   render(){
     return (
       <div className="container">
-        <Form add={this.newBey}/>
+        <Form search = {this.searchingBeys} add={this.newBey} searchBeys={this.state.searchBeys} selectBeys={""} />
         <BeyContainer sortBeys = {this.state.sortedBeyArray} selectBeys={this.selectBeys}/>
         <Favorites favBeys={this.state.favoriteBeys} selectBeys={this.removeBeys}/>
       </div>

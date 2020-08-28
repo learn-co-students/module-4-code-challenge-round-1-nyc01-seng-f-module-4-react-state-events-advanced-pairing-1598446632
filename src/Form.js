@@ -1,4 +1,5 @@
 import React from "react"
+import BeyCard from "./BeyCard"
 
 class Form extends React.Component{
 
@@ -12,6 +13,9 @@ class Form extends React.Component{
         }
     }
 
+    beys = () => {
+        return this.props.searchBeys.map(beyObj => <BeyCard key={beyObj.id} bey={beyObj} selectBeys={this.props.selectBeys}/>)
+      }
     
         changeHandler = (event) =>{
             event.persist()
@@ -44,7 +48,8 @@ class Form extends React.Component{
 // if i do above, i might be able to get away with saving te previous option as a variable that can be "reset" back once they press a certain button. but who knows
         searchHandler = (event) =>{
             event.preventDefault()
-            return <h1>Luis</h1>
+            event.persist()
+            this.props.search(event.target.search.value)
         }
 
 
@@ -68,7 +73,7 @@ class Form extends React.Component{
                     </form>
                 </div>
 
-
+                { this.beys() }
 
 
 
